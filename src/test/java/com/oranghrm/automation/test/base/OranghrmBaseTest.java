@@ -28,6 +28,7 @@ public class OranghrmBaseTest {
 			System.setProperty("webdriver.chromedriver", PropertyReader.retrieveProperty("chromePath"));
 			logger.info("launching the chrome browser");
 			driver = new ChromeDriver();
+			driver.get(PropertyReader.retrieveProperty("url"));
 
 		}
 
@@ -36,16 +37,17 @@ public class OranghrmBaseTest {
 			System.setProperty("webdriver.edgedriver", PropertyReader.retrieveProperty("edgePath"));
 			logger.info("launching the edge browser");
 			driver = new EdgeDriver();
+			driver.get(PropertyReader.retrieveProperty("url"));
 
 		}
-		
-		OranghrmListener.driver=driver;
+
+		OranghrmListener.driver = driver;
 
 	}
-	
+
 	@AfterSuite
 	public void cleanup() {
-		
+
 		logger.info("Cleaning the Browser Session");
 		try {
 			Thread.sleep(3000);
@@ -54,8 +56,7 @@ public class OranghrmBaseTest {
 			e.printStackTrace();
 		}
 		driver.quit();
-		
-		
+
 	}
 
 }
