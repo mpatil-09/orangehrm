@@ -16,7 +16,7 @@ import org.testng.TestListenerAdapter;
 public class OranghrmListener extends TestListenerAdapter {
 
 	public static final Logger logger = LogManager.getLogger(OranghrmListener.class);
-	WebDriver driver;
+	public static WebDriver driver;
 
 	@Override
 	public void onTestStart(ITestResult result) {
