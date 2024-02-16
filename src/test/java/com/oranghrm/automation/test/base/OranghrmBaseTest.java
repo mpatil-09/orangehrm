@@ -1,5 +1,7 @@
 package com.oranghrm.automation.test.base;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +11,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import com.oranghrm.automation.listener.OranghrmListener;
+import com.oranghrm.automation.pages.base.BasePage;
 import com.oranghrm.automation.utils.PropertyReader;
 
 @Listeners(OranghrmListener.class)
@@ -29,6 +32,7 @@ public class OranghrmBaseTest {
 			logger.info("launching the chrome browser");
 			driver = new ChromeDriver();
 			driver.get(PropertyReader.retrieveProperty("url"));
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		}
 
@@ -38,10 +42,12 @@ public class OranghrmBaseTest {
 			logger.info("launching the edge browser");
 			driver = new EdgeDriver();
 			driver.get(PropertyReader.retrieveProperty("url"));
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		}
 
 		OranghrmListener.driver = driver;
+		BasePage.driver = driver;
 
 	}
 
